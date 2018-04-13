@@ -1,17 +1,19 @@
-# -*- coding: utf-8 -*-
-# CSC 365 Sec01
-# Von Dollen
-# Lab 1 - Part 1 (Spring 18)
-# Team : Geraldo Macias, Luis Trujillo, Joshua Rivas
-
+# ******************************************************************************
+# CSC 365 Spring 18 Von Dollen
+# Geraldo Macias
+# Luis Trujillo
+# Josh Rivas
+# ******************************************************************************
 import pandas as pd
 
 
-# Create a dataframe by reading from a csv file
-# Explicitly write all column names
-columns = ['lastName', 'firstName', 'grade', 'classroom', 'bus', 'gpa',
-            'tLastName', 'tFirstName']
-df = pd.read_csv('students.txt', names=columns)
+columns = ['StLastName', 'StFirstName', 'Grade', 'Classroom', 'Bus', 'Gpa']
+students = pd.read_csv('list.txt', names=columns)
+
+columns = ['TLastName', 'TFirstName', 'Classroom',]
+teachers = pd.read_csv('teachers.txt', names=columns)
+
+df = students.join(teachers.set_index('Classroom'), on='Classroom')
 
 # ******************************************************************************
 #                       lastNameBus
@@ -20,7 +22,7 @@ df = pd.read_csv('students.txt', names=columns)
 # the bus route the student takes.
 # ******************************************************************************
 def lastNameBus(last):
-    bus = df.loc[df['lastName'] == last]
+    bus = df.loc[df['StLastName'] == last]
     j = bus.shape[0]
     if j == 0:
         print('')
@@ -39,7 +41,7 @@ def lastNameBus(last):
 # teacher (last and first name).
 # ******************************************************************************
 def studentLastname(last):
-    bus = df.loc[df['lastName'] == last]
+    bus = df.loc[df['StLastName'] == last]
     j = bus.shape[0]
     if j == 0:
         print('')
@@ -59,7 +61,7 @@ def studentLastname(last):
 # For each entry found, print the last and the first name of the student.
 # ******************************************************************************
 def teacher(tlast):
-    tlast = df.loc[df['tLastName'] == tlast]
+    tlast = df.loc[df['TLastName'] == tlast]
     j = tlast.shape[0]
     if j == 0:
         print('')
@@ -76,7 +78,7 @@ def teacher(tlast):
 # and their grade and classroom.
 # ******************************************************************************
 def busRoute(busNum):
-    bus = df.loc[df['bus'] == busNum].head()
+    bus = df.loc[df['Bus'] == busNum].head()
     j = bus.shape[0]
     if j == 0:
         print('')
@@ -94,7 +96,7 @@ def busRoute(busNum):
 # For each entry, output the name (last and first) of the student
 # ******************************************************************************
 def studentsInGrade(grade):
-    grade = df.loc[df['grade'] == grade]
+    grade = df.loc[df['Grade'] == grade]
     j = grade.shape[0]
     if j == 0:
         print('')
@@ -113,8 +115,8 @@ def studentsInGrade(grade):
 # teacher, bus route).
 # ******************************************************************************
 def lowestGPA(grade):
-    grade = df.loc[df['grade'] == grade]
-    grade = grade.sort_values(by=['gpa']).head(1)
+    grade = df.loc[df['Grade'] == grade]
+    grade = grade.sort_values(by=['Gpa']).head(1)
     lName = grade.iloc[0][0]
     fName = grade.iloc[0][1]
     gp = grade.iloc[0][5]
@@ -131,8 +133,8 @@ def lowestGPA(grade):
 # contents of this entry (name of the student, GPA, teacher, bus route).
 # ******************************************************************************
 def highestGPA(grade):
-    grade = df.loc[df['grade'] == grade]
-    grade = grade.sort_values(by=['gpa'], ascending=False).head(1)
+    grade = df.loc[df['Grade'] == grade]
+    grade = grade.sort_values(by=['Gpa'], ascending=False).head(1)
     lName = grade.iloc[0][0]
     fName = grade.iloc[0][1]
     gp = grade.iloc[0][5]
@@ -140,6 +142,7 @@ def highestGPA(grade):
     tfirst = grade.iloc[0][7]
     bRoute = grade.iloc[0][3]
     print('%s,%s,%s,%s,%s,%s' %(lName, fName, gp, tlast, tfirst, bRoute))
+
 
 # ******************************************************************************
 #                       average
@@ -151,9 +154,9 @@ def highestGPA(grade):
 #   (the number provided in command) and the average GPA score computed.
 # ******************************************************************************
 def average(gradeLevel):
-    avg = df.loc[df['grade'] == gradeLevel]
+    avg = df.loc[df['Grade'] == gradeLevel]
     # Print variable value as well
-    print("Grade:%d\t\tAverage GPA:%0.2f" %(gradeLevel, avg['gpa'].mean()))
+    print("Grade:%d\t\tAverage GPA:%0.2f" %(gradeLevel, avg['Gpa'].mean()))
 
 # ******************************************************************************
 #                       info
@@ -167,13 +170,136 @@ def average(gradeLevel):
 # ******************************************************************************
 def gradeRange():
     for i in range(0, 7):
-        info = df.loc[df['grade'] == i]
+        info = df.loc[df['Grade'] == i]
         print("Grade:%d\t\tNumber of Students:%d" %(i,info.shape[0]))
+
+# ******************************************************************************
+#                       classRoomStudents
+# Given a classroom number, list all students assigned to it.
+# ******************************************************************************
+def classRoomStudents(room):
+    classroom = df.loc[df['Classroom'] == room]
+    j = classroom.shape[0]
+    if j == 0:
+        print('')
+    else:
+        for i in range(0,j):
+            sLast = classroom.iloc[i][0]
+            sFirst = classroom.iloc[i][1]
+            print("%s,%s" %(sLast,sFirst))
+
+# ******************************************************************************
+#                       classRoomTeachers
+# Given a classroom number, find the teacher (or teachers) teaching in it.
+# Need to functionalize
+# ******************************************************************************
+def classRoomTeachers(number):
+    classroom = df.loc[df['Classroom'] == number]
+    classroom = classroom.drop_duplicates('TLastName')
+    j = classroom.shape[0]
+    if j == 0:
+        print('')
+    else:
+        for i in range(0,j):
+            tLast = classroom.iloc[i][6]
+            tFirst = classroom.iloc[i][7]
+            print('%s,%s' %(tLast, tFirst))
+
+# ******************************************************************************
+#                       teacherByGrade
+# Given a grade, find all teachers who teach it.
+# ******************************************************************************
+def teacherByGrade(grade):
+    teacher = df.loc[df['Grade'] == grade]
+    teacher = teacher.drop_duplicates('TLastName')
+    j = teacher.shape[0]
+    if j == 0:
+        print('')
+    else:
+        for i in range(0,j):
+            tLast = teacher.iloc[i][6]
+            tFirst = teacher.iloc[i][7]
+            print('%s,%s' %(tLast, tFirst))
+
+# ******************************************************************************
+#                       enrollment                         
+# Report the enrollments broken down by classroom 
+# (i.e., output a list of classrooms ordered by classroom number, 
+# with a total number of students in each of the classrooms).
+# ******************************************************************************
+def enrollment():
+    enroll = df.sort_values('Classroom', ascending=True)
+    a = enroll['Classroom'].drop_duplicates().values
+    for i in range(0, len(a)):
+        frame = enroll[enroll['Classroom'] == a[i]]
+        rows = len(frame)
+        print('Classroom:%d\tNumber of students:%d' %(a[i], rows))
+
+# ******************************************************************************
+#                       busGpaAverage                         
+# A report of each bus route and the average GPA of its students
+# ******************************************************************************
+def busGpaAverage():
+    bga = df
+    bga = bga.set_index('Bus').sort_index()
+    bga = bga['Gpa'].mean(level=0)
+    bga = bga.reset_index()
+    bga = bga.sort_values(by='Gpa', ascending=False)
+    for x in range(0, bga.shape[0]):
+        b = bga.iloc[x][0]
+        g = bga.iloc[x][1]
+        print('Gpa_Avg:%0.2f\tBus:%d' %(g, b))
+    print('Overall Gpa mean:%0.2f' %bga.Gpa.mean())
+    print('Standard deviation:%0.2f' %bga.Gpa.std())
+
+# ******************************************************************************
+#                       gradeGpaAverage                         
+# A report of each grade and the average GPA of its students
+# ******************************************************************************
+def gradeGpaAverage():
+    gga = df
+    gga = gga.set_index('Grade')
+    gga = gga.sort_index()
+    grades = gga['Gpa'].mean(level=0)
+    grades = grades.reset_index()
+    for x in range(0,7):
+        if x == 0:
+            print('Grade:0\tGpa:No students enrolled')
+        elif x == 5:
+            print('Grade:5\tGpa:No students enrolled')
+        else:
+            g = float(grades[grades['Grade'] == x].Gpa)
+            print('Grade:%d\tGpa:%0.2f' %(x, g))
+    print('Overall Gpa mean:%0.2f' %grades.Gpa.mean())
+    print('Standard deviation:%0.2f' %grades.Gpa.std())
+
+# ******************************************************************************
+#                       teacherGpaAverage                         
+# A report of each teacher and the average GPA of their students
+# ******************************************************************************
+def teacherGpaAverage():
+    import matplotlib.pyplot as plt
+    teach = df
+    teach = teach.set_index('TLastName').sort_index()
+    grades = teach['Gpa'].mean(level=0)
+    grades = grades.reset_index()
+    teach = teach.reset_index()
+    teach = teach[['TLastName', 'TFirstName', 'Grade']]
+    teach = teach.merge(grades)[['TLastName', 'TFirstName', 'Gpa', 'Grade']].drop_duplicates()
+    teach = teach.sort_values(by='Gpa', ascending=False)
+    for x in range(0, teach.shape[0]):
+        t = teach.iloc[x][0]
+        l = teach.iloc[x][1]
+        g = teach.iloc[x][2]
+        gr = teach.iloc[x][3]
+        print('Gpa:%0.2f\tGrade:%d\t\tTeacher:%s,%s' %(g, gr, t, l))
+    print('Overall Gpa mean:%0.2f' %teach.Gpa.mean())
+    print('Standard Deviation:%0.2f' %teach.Gpa.std())
 
 # ******************************************************************************
 #                       testing block
 # ******************************************************************************
-grade = 2
+#grade = 2
 #print(df.head(10))
 #lastNameBus('WOOLERY')
 #studentLastname('WOOLERY')
@@ -184,3 +310,9 @@ grade = 2
 #highestGPA(grade)
 #average(grade)
 #gradeRange()
+#classRoomTeachers(110)
+#teacherByGrade(grade)
+#enrollment()
+#busGpaAverage()
+#gradeGpaAverage()
+#teacherGpaAverage()
