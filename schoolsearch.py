@@ -71,9 +71,36 @@ def parse_input(user_input):
       else:
          print("INPUT ERROR")
    elif(user_input[0] == "Q" or user_input[0] == "Quit"):
-      return True
+       return True
    else:
-      print("INPUT ERROR")
+       print("INPUT ERROR")
+
+   # Check for C[lassroom]
+   elif(user_input[0] == "C" or user_input[0] == "Classroom"):
+      # if(len(user_input) == 2):
+      #     studentsInGrade(int(user_input[1]))
+      if(len(user_input) == 3):
+         if(user_input[2] == "S" or user_input[2] == "Students"):
+            #TODO: Call proper function
+         if(user_input[2] == "T" or user_input[2] == "Teachers"):
+            #TODO: Call proper function
+      else:
+         print("INPUT ERROR")
+
+    # Check for Te[aching] grade
+    elif(user_input[0] == "Te" or user_input[0] == "Teaching"):
+      if(len(user_input) == 2):
+          # TODO: add function call
+      else:
+         print("INPUT ERROR")
+
+    # Check for An[alytics]
+elif(user_input[0] == "An" or user_input[0] == "Analytics"):
+      if(len(user_input) == 1):
+          # TODO: add function call
+      else:
+         print("INPUT ERROR")
+
 
 
 def run_test_suite():
@@ -112,6 +139,11 @@ def schoolSearch():
       print("G[rade]:   <number> [H[igh]|L[ow]]")
       print("A[verage]:   <number>")
       print("I[nfo]")
+      print("C[lassroom]: <number> [S[tudents]]|[T[eachers]")
+      print("Te[aching] grade: <number>")
+      print("R[eport] enrollment")
+      print("An[alytics]")
+
       print("Q[uit]")
       user_input = input()
       quit = parse_input(user_input)
