@@ -1,0 +1,268 @@
+// Test 1-1
+// Test Reqs: R4
+// Description: Student cmd with only student name arg (info found)
+// Expected: LINHART,LELA,3,107,FAFARD,ROCIO
+
+Student LINHART
+
+// Test 1-2
+// Test Reqs: R4
+// Description: Student cmd with only student name arg (info NOT found)
+// Expected: <Blank line>
+
+S RIVAS
+
+
+// Test 2-1
+// Test Reqs: R5
+// Description: Student cmd with student name and bus arg (info found)
+// Expected: SARAO,DIEDRA,52
+
+Student SARAO B
+
+
+// Test 3-1
+// Test Reqs: R6
+// Description: Teacher cmd (info found)
+// Expected: RACANELLO,NOEL
+//           CORONADO,DIMPLE
+//           BOYTER,WAN
+//           KEMERER,ROSETTA
+//           DEMARTINI,DEWAYNE
+
+T KERBS
+
+// Test 3-2
+// Test Reqs: R6
+// Description: Teacher cmd (info NOT found)
+// Expected: <Blank line>
+
+T KERBY
+
+
+// Test 4-1
+// Test Reqs: R7
+// Description: Grade cmd with only grade number cmd (info found)
+// Expected output: <Blank line>
+
+Grade 0
+
+// Test 4-2
+// Test Reqs: R7
+// Description: Grade cmd with only grade number cmd (info NOT found)
+// Expected output: <Blank line>
+
+Grade -1
+
+
+// Test 5-1
+// Test Reqs: R8
+// Description: Bus cmd (info found)
+// Expected output: CARTER,CORKER,4,105
+//                  DEEDRA,WORBINGTON,4,112
+//                  MANIE,CIGANEK,3,107
+//                  KENDRA,SPANICEK,4,112
+//                  FLOY,CLECKLER,6,109
+
+B 53
+
+// Test 5-2
+// Test Reqs: R8
+// Description: Bus cmd (info NOT found)
+// Expected output: <Blank line>
+
+B -69
+
+
+// Test 6-1
+// Test Reqs: R9
+// Description: Grade cmd with High arg (info found)
+// Expected output: LAMKIN,TAMA,3.23,NISTENDIRK,NANCY,111
+
+G 6 High
+
+
+// Test 6-2
+// Test Reqs: R9
+// Description: Grade cmd with High arg (info NOT found)
+// Expected output: <Blank line>
+
+G 7 High
+
+
+// Test 7
+// Test Reqs: R9
+// Description: Grade cmd with Low arg (info found)
+// Expected output: <Blank line>
+
+Grade 0 L
+
+
+// Test 8
+// Test Reqs: R10
+// Description: Average cmd (info found)
+// Expected output: Grade:3		Average GPA:3.05
+
+Average 3
+
+
+// Test 9
+// Test Reqs: R11
+// Description: Info cmd
+// Expected output: Grade:0		Number of Students:0
+//                  Grade:1		Number of Students:2
+//                  Grade:2		Number of Students:13
+//                  Grade:3		Number of Students:9
+//                  Grade:4		Number of Students:15
+//                  Grade:5		Number of Students:0
+//                  Grade:6		Number of Students:21
+
+Info
+
+// Test 10
+// Test Reqs: R13
+// Description: Read in students.txt file
+//
+
+
+// Test 11
+// Test Reqs: E1
+// Description: Incorrect cmd
+// Print error
+
+GIMME YO INFO Chavez
+
+
+// Test 12
+// Test Reqs: R12
+// Description: Quit cmd
+// Expected output: <>
+
+//Q
+
+// Test 13
+// Test Reqs: E1
+// Description: No students.txt file found
+// Expected: Exit program
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//               Test Cases Part 2
+
+// Test 14-1
+// Test Reqs: NR1
+// Description: Classroom number cmd with Student argument (info found)
+// Expected:   LIBRANDI, TODD
+               HAVIR, BOBBIE
+               SARAO, DIEDRA
+               VANCOTT, MIKE
+               WICINSKY, TERESE
+               KOZOLA, BUSTER
+               MULLINGS, LEIGHANN
+               BUSSMANN, BILLY
+               BERBES, DICK
+               MULGREW, RANDELL
+               TOWLEY, LANE
+
+Classroom 108 Students
+
+// Test 14-2
+// Test Reqs: NR1
+// Description: Classroom number cmd with Student argument (info NOT found)
+// Expected:   <blank line>
+
+C 213 S
+
+// Test 15-1
+// Test Reqs: NR2
+// Description: Classroom number cmd with Teacher argument (info found)
+// Expected:   COOL, REUBEN
+
+C 101 T
+
+// Test 15-2
+// Test Reqs: NR2
+// Description: Classroom number cmd with Teacher argument (info NOT found)
+// Expected:   <blank line>
+
+Classroom 619 Teachers
+
+// Test 16-1
+// Test Reqs: NR3
+// Description: Grade cmd (info found)
+// Expected:   COOKUS, XUAN
+               ELHADDAD, SHANTE
+               BRODERSEN, HYE
+               SWEDLUND, SHARRI
+               CIGANEK, MANIE
+               COVINGTON, TOMAS
+               EARLY, TORY
+               LINHART, LELA
+               THEUNISSEN, GRACE
+
+Grade 3
+
+// Test 16-2
+// Test Reqs: NR3
+// Description: Grade cmd (info NOT found)
+// Expected: <blank line>
+
+Grade 7
+
+// Test 17
+// Test Reqs: NR4
+// Description: Report cmd (shows enrollment data)
+// Expected:   Classroom:101  Number of students:1
+               Classroom:102  Number of students:5
+               Classroom:103  Number of students:2
+               Classroom:104  Number of students:2
+               Classroom:105  Number of students:6
+               Classroom:106  Number of students:2
+               Classroom:107  Number of students:7
+               Classroom:108  Number of students:11
+               Classroom:109  Number of students:5
+               Classroom:110  Number of students:2
+               Classroom:111  Number of students:9
+               Classroom:112  Number of students:8
+
+Report
+
+// Test 18
+// Test Reqs: NR5
+// Description: Analytics cmd (shows busGPA, gradeGPA, teacherGPAaverage)
+// Expected:   Gpa_Avg:3.06   Bus:53
+               Gpa_Avg:3.04   Bus:55
+               Gpa_Avg:3.02   Bus:51
+               Gpa_Avg:2.95   Bus:0
+               Gpa_Avg:2.94   Bus:54
+               Gpa_Avg:2.92   Bus:56
+               Gpa_Avg:2.88   Bus:52
+               Overall Gpa mean:2.97
+               Standard deviation:0.06
+               ()
+               Grade:0  Gpa:No students enrolled
+               Grade:1  Gpa:3.00
+               Grade:2  Gpa:2.95
+               Grade:3  Gpa:3.05
+               Grade:4  Gpa:2.95
+               Grade:5  Gpa:No students enrolled
+               Grade:6  Gpa:2.98
+               Overall Gpa mean:2.98
+               Standard deviation:0.04
+               ()
+               Gpa:3.17        Grade:3         Teacher:ALPERT, JONATHAN
+               Gpa:3.09        Grade:6         Teacher:BODZIONY, LUZ
+               Gpa:3.01        Grade:3         Teacher:FAFARD, ROCIO
+               Gpa:3.00        Grade:1         Teacher:FALKER, ADOLPH
+               Gpa:2.99        Grade:4         Teacher:CHIONCHIO, PERLA
+               Gpa:2.98        Grade:6         Teacher:KERBS, BENITO
+               Gpa:2.96        Grade:6         Teacher:NISTENDIRK, NANCY
+               Gpa:2.96        Grade:6         Teacher:GAMBREL, JAE
+               Gpa:2.95        Grade:2         Teacher:HAMER, GAVIN
+               Gpa:2.91        Grade:4         Teacher:HANTZ, JED
+               Gpa:2.91        Grade:4         Teacher:COOL, REUBEN
+               Gpa:2.90        Grade:2         Teacher:STEIB, GALE
+               Overall Gpa mean:2.99
+Standard Deviation:0.08
+
+Analytics
