@@ -131,10 +131,21 @@ def run_test_suite():
    line = f.readline()
    quit = False
 
+   # Check for data files
+   #try:
+   #   student_file = open("students.txt", "r")
+   #except IOError:
+   #   print("No 'students.txt' file found.")
+
    try:
-      student_file = open("students.txt", "r")
+      list_file = open("list.txt", "r")
    except IOError:
-      print("No 'students.txt' file found.")
+      print("No 'list.txt' file found.")
+
+   try:
+      teachers_file = open("teachers.txt", "r")
+   except IOError:
+      print("No 'teachers.txt' file found.")
 
    while(line):
       if(line[0] != "/" and line.strip()):
