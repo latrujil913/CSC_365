@@ -70,10 +70,6 @@ def parse_input(user_input):
          gradeRange()
       else:
          print("INPUT ERROR")
-   elif(user_input[0] == "Q" or user_input[0] == "Quit"):
-       return True
-   else:
-       print("INPUT ERROR")
 
    # Check for C[lassroom]
    elif(user_input[0] == "C" or user_input[0] == "Classroom"):
@@ -81,25 +77,42 @@ def parse_input(user_input):
       #     studentsInGrade(int(user_input[1]))
       if(len(user_input) == 3):
          if(user_input[2] == "S" or user_input[2] == "Students"):
-            #TODO: Call proper function
+            classRoomStudents(int(user_input[1]))
          if(user_input[2] == "T" or user_input[2] == "Teachers"):
-            #TODO: Call proper function
+            classRoomTeachers(int(user_input[1]))
       else:
          print("INPUT ERROR")
 
-    # Check for Te[aching] grade
-    elif(user_input[0] == "Te" or user_input[0] == "Teaching"):
+   # Check for Te[aching] grade
+   elif(user_input[0] == "Te" or user_input[0] == "Teaching"):
       if(len(user_input) == 2):
-          # TODO: add function call
+          teacherByGrade(int(user_input[1]))
+      else:
+         print("INPUT ERROR")
+
+   # Check for R[eport] enrollment
+   elif(user_input[0] == "R" or user_input[0] == "Report"):
+      if(len(user_input) == 1):
+         enrollment()
       else:
          print("INPUT ERROR")
 
     # Check for An[alytics]
-elif(user_input[0] == "An" or user_input[0] == "Analytics"):
-      if(len(user_input) == 1):
-          # TODO: add function call
-      else:
-         print("INPUT ERROR")
+   elif(user_input[0] == "An" or user_input[0] == "Analytics"):
+          if(len(user_input) == 1):
+             print()
+             busGpaAverage()
+             print()
+             gradeGpaAverage()
+             print()
+             teacherGpaAverage()
+          else:
+             print("INPUT ERROR")
+
+   elif(user_input[0] == "Q" or user_input[0] == "Quit"):
+       return True
+   else:
+       print("INPUT ERROR")
 
 
 
@@ -133,6 +146,8 @@ def schoolSearch():
    # Run prompt till quit is entered
    while(quit != True):
       # Prompt user
+      print("")
+      print("")
       print("S[tudent]:   <lastname> [B[us]]")
       print("T[eacher]:   <lastname>")
       print("B[us]:   <number>")
@@ -143,8 +158,8 @@ def schoolSearch():
       print("Te[aching] grade: <number>")
       print("R[eport] enrollment")
       print("An[alytics]")
-
       print("Q[uit]")
+      print("")
       user_input = input()
       quit = parse_input(user_input)
 
