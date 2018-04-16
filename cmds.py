@@ -222,9 +222,9 @@ def teacherByGrade(grade):
             print('%s,%s' %(tLast, tFirst))
 
 # ******************************************************************************
-#                       enrollment                         
-# Report the enrollments broken down by classroom 
-# (i.e., output a list of classrooms ordered by classroom number, 
+#                       enrollment
+# Report the enrollments broken down by classroom
+# (i.e., output a list of classrooms ordered by classroom number,
 # with a total number of students in each of the classrooms).
 # ******************************************************************************
 def enrollment():
@@ -236,7 +236,7 @@ def enrollment():
         print('Classroom:%d\tNumber of students:%d' %(a[i], rows))
 
 # ******************************************************************************
-#                       busGpaAverage                         
+#                       busGpaAverage
 # A report of each bus route and the average GPA of its students
 # ******************************************************************************
 def busGpaAverage():
@@ -249,11 +249,11 @@ def busGpaAverage():
         b = bga.iloc[x][0]
         g = bga.iloc[x][1]
         print('Gpa_Avg:%0.2f\tBus:%d' %(g, b))
-    print('Overall Gpa mean:%0.2f' %bga.Gpa.mean())
+    print('Bus Gpa mean:%0.2f' %bga.Gpa.mean())
     print('Standard deviation:%0.2f' %bga.Gpa.std())
 
 # ******************************************************************************
-#                       gradeGpaAverage                         
+#                       gradeGpaAverage
 # A report of each grade and the average GPA of its students
 # ******************************************************************************
 def gradeGpaAverage():
@@ -270,11 +270,11 @@ def gradeGpaAverage():
         else:
             g = float(grades[grades['Grade'] == x].Gpa)
             print('Grade:%d\tGpa:%0.2f' %(x, g))
-    print('Overall Gpa mean:%0.2f' %grades.Gpa.mean())
+    print('Grade Gpa mean:%0.2f' %grades.Gpa.mean())
     print('Standard deviation:%0.2f' %grades.Gpa.std())
 
 # ******************************************************************************
-#                       teacherGpaAverage                         
+#                       teacherGpaAverage
 # A report of each teacher and the average GPA of their students
 # ******************************************************************************
 def teacherGpaAverage():
@@ -293,7 +293,7 @@ def teacherGpaAverage():
         g = teach.iloc[x][2]
         gr = teach.iloc[x][3]
         print('Gpa:%0.2f\tGrade:%d\t\tTeacher:%s,%s' %(g, gr, t, l))
-    print('Overall Gpa mean:%0.2f' %teach.Gpa.mean())
+    print('Teacher Gpa mean:%0.2f' %teach.Gpa.mean())
     print('Standard Deviation:%0.2f' %teach.Gpa.std())
 
 # ******************************************************************************
