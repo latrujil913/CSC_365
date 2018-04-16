@@ -1,0 +1,24 @@
+Geraldo Macias
+Josh Rivas
+Luis Trujillo
+
+Because this is a python project, compilation is not necessary.
+Installation of ‘pandas’ is required to run the program
+Most terminals allow pip install pandas
+
+To run the program, type “python3 schoolsearch.py”
+From there the prompt will guide through the rest of the program
+
+New commands for part 2 of the lab. Like in lab 1 the user can either
+type in the full word (optional) or the short cut.
+   -  "C[lassroom]: <number> [S[tudents]]|[T[eachers]”  ( Lists all students or
+      teachers assigned to a given classroom. )
+         Example: (Teachers) “C 104 T”
+         Example: (Students) “C 104 S”
+   -  "Te[aching] grade: <number>" (Given a grade, find all teachers
+         who teach it.)
+         Example: “Te 4”
+   -  "R[eport] enrollment" (Report the enrollments broken down by classroom)
+         Example: “R”
+   -  "An[alytics]" (Report analytical information)
+         Example: “An”
