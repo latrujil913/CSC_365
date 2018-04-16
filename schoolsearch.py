@@ -100,12 +100,22 @@ def parse_input(user_input):
     # Check for An[alytics]
    elif(user_input[0] == "An" or user_input[0] == "Analytics"):
           if(len(user_input) == 1):
-             print()
+             print("======== Analytics ========")
+             print("Bus GPA average:")
+             print(" ")
              busGpaAverage()
-             print()
+             print(" ")
+             print(" ")
+             print("Grade GPA average:")
+             print(" ")
              gradeGpaAverage()
-             print()
+             print(" ")
+             print(" ")
+             print("Teacher GPA average:")
+             print(" ")
              teacherGpaAverage()
+             print(" ")
+             print(" ")
           else:
              print("INPUT ERROR")
 
